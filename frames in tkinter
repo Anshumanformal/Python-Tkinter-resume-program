@@ -1,0 +1,36 @@
+# Importing libraries.
+from tkinter import *
+import webbrowser
+
+root = Tk()
+root.geometry("655x333")
+f1 = Frame(root, borderwidth=10, bg="#c31432", relief=GROOVE)
+f1.pack(side=LEFT, fill="both")
+
+f2 = Frame(root, borderwidth=10, bg="#5cd65c", relief=GROOVE)
+f2.pack(side=TOP, fill="x")
+
+f3 = Frame(root, borderwidth=10, bg="#5cd65c", relief=GROOVE)
+f3.pack(side = BOTTOM, anchor = "se", fill="both")
+
+b = Button(f1, text="Project Tkinter - Pycharm", font="verdana 16", activebackground="blue",activeforeground="yellow")
+b.pack(pady=5)
+
+# Button for resume showing. 
+# Not attached my resume here for time being!!
+
+new = 1
+url = "www.google.com"
+def openresume():
+    webbrowser.open(url, new=new)
+
+b = Button(f2, text="RESUME", command=openresume, font="verdana 16", pady=22, activebackground="blue",
+               activeforeground="yellow")
+b.pack()
+b = Button(f3, text="Other material",
+            font="verdana 16",
+            pady=22,
+            activebackground="blue",
+            activeforeground="yellow")
+b.pack()
+root.mainloop()
