@@ -15,6 +15,8 @@ f1.pack(side=LEFT, fill="both")
 # Button 1.
 num = 1
 def invokemessage():
+    scrollbar = Scrollbar(f3)
+    scrollbar.pack(side=RIGHT, fill=Y)
     global num
     if(num == 1):
         #URL for the content.
@@ -23,9 +25,12 @@ def invokemessage():
         f = urlopen(url)
         myfile = f.read()
         msg = Message(f3,text=myfile)
+       #Attempt for incorporating the feature of scrolling in y-axis.
+       #, yscrollcommand = scrollbar.set
         msg.pack(fill="both", expand=TRUE)
         num+=1
-        
+        scrollbar.config(command=msg.yview)
+
 b = Button(f1, text="Test1", command=invokemessage, font="verdana 16", activebackground="blue",
            activeforeground="yellow")
 b.pack(pady=5)
@@ -44,7 +49,6 @@ f2.pack(side=TOP, fill="both")
 
 # Button 1 for resume showing.
 new = 1
-#Demo URL.
 url = "www.google.com"
 
 def openresume():
