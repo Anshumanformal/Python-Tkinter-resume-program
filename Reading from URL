@@ -24,12 +24,13 @@ def invokemessage():
         url = "https://raw.githubusercontent.com/Anshumanformal/Python-Tkinter/master/LICENSE"
         f = urlopen(url)
         myfile = f.read()
-        msg = Message(f3,text=myfile)
+        
+        #msg = Message(f3,text=myfile)
        #Attempt for incorporating the feature of scrolling in y-axis.
        #, yscrollcommand = scrollbar.set
-        msg.pack(fill="both", expand=TRUE)
+        #msg.pack(fill="both", expand=TRUE)
         num+=1
-        scrollbar.config(command=msg.yview)
+        #scrollbar.config(command=msg.yview)
 
 b = Button(f1, text="Test1", command=invokemessage, font="verdana 16", activebackground="blue",
            activeforeground="yellow")
