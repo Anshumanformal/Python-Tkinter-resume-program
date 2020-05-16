@@ -1,0 +1,85 @@
+
+# Importing libraries.
+from tkinter import *
+import webbrowser
+from urllib.request import urlopen
+
+root = Tk()
+root.geometry("655x333")
+
+# Different frames.
+# Frame 1.
+f1 = Frame(root, borderwidth=10, bg="#c31432", relief=GROOVE)
+f1.pack(side=LEFT, fill="both")
+
+# Button 1.
+num = 1
+
+#Invoked the message to display the source code.
+def invokemessage():
+   
+    global num
+    if(num == 1): #Compared the variable with a constant value of 1.
+        #URL for the content.
+        #Demo URL.
+        url = "https://raw.githubusercontent.com/Anshumanformal/Python-Tkinter/master/LICENSE"
+      
+        f = urlopen(url)
+       
+        myfile = f.read()
+        #Increment num by 1.
+        num += 1
+      
+        sb = Scrollbar(f3)
+        #Packed the scrollbar.
+        sb.pack(side=RIGHT, fill=Y)
+        
+        text = Text(f3,yscrollcommand = sb.set)
+        #Inserted 'myfile' contents to the text widget.
+        text.insert(END,myfile)
+        
+        sb.config(command = text.yview)
+ 
+        def textEvent(event):
+            if (event.state == 12 and event.keysym == 'c'):
+                return
+            else:
+                return "break"
+        #Binding the key to the lambda function.
+        text.bind("<Key>", lambda e: textEvent(e))
+        #Packing the text.
+        text.pack(fill="both", expand=TRUE)
+
+b = Button(f1, text="Test1", command=invokemessage, font="verdana 16", activebackground="blue",
+           activeforeground="yellow")
+b.pack(pady=5)
+
+# Button 2.
+b = Button(f1, text="Test2", font="verdana 16", activebackground="blue", activeforeground="yellow")
+b.pack(pady=5)
+
+# Button 3.
+b = Button(f1, text="Test3", font="verdana 16", activebackground="blue", activeforeground="yellow")
+b.pack(pady=5)
+
+# Frame 2.
+f2 = Frame(root, borderwidth=10, bg="#5cd65c", relief=GROOVE)
+f2.pack(side=TOP, fill="both")
+
+# Button 1 for resume showing.
+new = 1
+url = "www.google.com"
+
+def openresume():
+    webbrowser.open(url, new=new)
+
+b = Button(f2, text="RESUME", command=openresume, font="verdana 16", pady=22, activebackground="blue",
+           activeforeground="yellow")
+b.pack()
+
+# Frame 3.
+f3 = Frame(root, borderwidth=10, bg="#5cd65c", relief=GROOVE)
+
+f3.pack(side=BOTTOM, fill="both", expand=TRUE)
+
+root.mainloop()
