@@ -1,0 +1,86 @@
+# Importing libraries.
+from tkinter import *
+import webbrowser
+from urllib.request import urlopen
+
+root = Tk()
+root.geometry("655x333")
+
+# Different frames.
+# Frame 1.
+f1 = Frame(root, borderwidth=10, bg="#c31432", relief=GROOVE)
+f1.pack(side=LEFT, fill="both")
+
+# Button 1.
+def text1():
+    contact_text = r'''
+                   Name: Anshuman Ranjan
+                   Undergraduate Education: University Of Petroleum and Energy Studies, Dehradun
+                   Phone Number: 8789180090(call + WhatsApp)
+                   e-mail ID: anshumanformal@gmail.com
+                   '''
+    sb = Scrollbar(f3)
+    # Packed the scrollbar.
+    sb.pack(side=RIGHT, fill="both")
+    # Created the text widget with frame3(f3) and vertical scrolling command as parameters.
+    # The vertical scrolling command is set to sb.set using the variable of scrollbar.
+    text = Text(f3, yscrollcommand=sb.set)
+    # Inserted 'myfile' contents to the text widget.
+    text.insert(END, contact_text)
+    # Configuring scroll bar for using the command yview for text.
+    sb.config(command=text.yview)
+
+    # Calling the textEvent function where if denotes the 'ctrl + c' selection and else denotes other selections.
+    # This function helps to copy text without editing the text.
+    # If this function is removed, then the user can copy as well as
+    # edit the text hence making changes in the text until the program is restarted.
+
+    # Code snippet taken from - https://stackoverflow.com/a/45417036
+
+    def textEvent(event):
+        if (event.state == 12 and event.keysym == 'c'):
+            return
+        else:
+            return "break"
+
+    # Binding the key to the lambda function.
+    text.bind("<Key>", lambda e: textEvent(e))
+    # Packing the text.
+    text.pack(fill="both", expand=TRUE)
+
+b = Button(f1, text="Contact Me!", command=text1, font="verdana 16", activebackground="blue",
+           activeforeground="yellow")
+b.pack(pady=5)
+
+# Button 2.
+
+# Function to open website.
+def invoke_website():
+    #Access my website.
+    url = "https://anshumanranjan.wordpress.com/"
+    webbrowser.open(url, new=new)
+
+b = Button(f1, text="Website", command = invoke_website, font="verdana 16", activebackground="blue", activeforeground="yellow")
+b.pack(pady=5)
+
+# Frame 2.
+f2 = Frame(root, borderwidth=10, bg="#5cd65c", relief=GROOVE)
+f2.pack(side=TOP, fill="both")
+
+# Button 1 for resume showing.
+new = 1
+url = "https://drive.google.com/open?id=1gyBrf6F8DIO3kzgkVMhsMuG9f1PkwOXqyBewOY8-W_0"
+
+def openresume():
+    webbrowser.open(url, new=new)
+
+b = Button(f2, text="RESUME", command=openresume, font="verdana 16", pady=22, activebackground="blue",
+           activeforeground="yellow")
+b.pack()
+
+# Frame 3.
+f3 = Frame(root, borderwidth=10, bg="#5cd65c", relief=GROOVE)
+
+f3.pack(side=BOTTOM, fill="both", expand=TRUE)
+
+root.mainloop()
